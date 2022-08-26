@@ -26,7 +26,7 @@ public:
     static handle cast(openvdb::FloatGrid::Ptr src, return_value_policy, handle) {
         if (!src) return none().inc_ref();
         py::module::import("pyopenvdb").attr("FloatGrid");
-        boost::python::object obj = boost::python::object(src);
+        boost::python::object obj = boost::python::object(boost::ref(src));
         auto out = reinterpret_borrow<py::object>(obj.ptr());
         return out.release();
     }
